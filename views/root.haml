@@ -1,4 +1,15 @@
-%h2 Main Page
-%p Here is some text.
-%p Here is a <a href='/'>link</a>.
-%p ttys!
+-if !defined? @@token
+	%div#desc
+		%p We connect with your Soundcloud account to find meetups near you with people who share your music tastes!
+	%div#tracks
+		%a.tracks{:href => "/soundcloud"}	Make the magic happen!
+
+
+-if defined? @@token
+	%p= "Hello, #{@username}!"
+	
+	%p We're working on finding meetups that fit your music tastes!
+
+		
+
+

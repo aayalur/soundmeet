@@ -10,7 +10,7 @@ configure do
   SiteConfig = OpenStruct.new(
                  :title => 'SoundMeet',
                  :author => 'Amrit Ayalur',
-                 :url_base => 'http://localhost:4567/'
+                 :url_base => 'http://localhost:9393/'
                )
 
 
