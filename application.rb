@@ -6,9 +6,14 @@ require 'oauth2'
 require 'uri'
 require 'json'
 require 'better_errors'
+require 'rMeetup'
 require File.join(File.dirname(__FILE__), 'environment')
 
 enable :sessions
+before do 
+	RMeetup::Client.api_key = '5336243622357f5d3153263216a444b'
+end
+
 
 configure :development do
   use BetterErrors::Middleware
@@ -17,8 +22,6 @@ end
 
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
-
-  RMeetup::Client.api_key = '5336243622357f5d3153263216a444b'
 end
 
 error do
@@ -65,11 +68,19 @@ get '/callback' do
 
 	tracks = client.get('/me/favorites')
 
-	@genres = []
+	genres = []
 
 	tracks.each do |t|
-		@genres << t.genre
+		genres << t.genre
 	end
+# WORKS UNTIL HERE RIGHT NOW
+	@topic_ids = []
+	topics = RMeetup::Client.fetch(:topics, {:search => genres.join(' '), :page => 10})
+	topics.each do |t|
+		@topic_ids << t.id
+	end
+
+
 
 	haml :root
 
@@ -80,5 +91,16 @@ get '/soundcloud' do
 													:client_secret => 'd5b42e696073e24b5a4e8fe6f2aa4af8',
 													:redirect_uri => "http://localhost:9393/callback")
 	redirect client.authorize_url()
+end
+
+get '/meetups' do
+	@topic_ids = []
+	#RMeetup::Client.api_key = '5336243622357f5d3153263216a444b'
+	#topics = RMeetup::Client.fetch(:topics, {:search => @@genres.join(' '), :page => 10})
+	#topics.each do |t|
+	#	@topic_ids << t.id
+	#end
+	#puts @topic_ids.inspect
+	haml :meetups
 end
 
