@@ -101,8 +101,14 @@ get '/callback' do
   @long = session[:long]
   @topics = topic_ids
 
-  @meetup_response = MeetupParty.get("https://api.meetup.com/2/open_events.json?category=21&radius=50&lon=#{@long}&lat=#{@lat}&topic=#{topic_ids.join(',')}&key=5336243622357f5d3153263216a444b")
- 
+  #@meetup_response = MeetupParty.get("https://api.meetup.com/2/open_events.json?category=21&radius=50&lon=#{@long}&lat=#{@lat}&topic=#{topic_ids.join(',')}&key=5336243622357f5d3153263216a444b")
+
+  @meetup_response = MeetupParty.get("https://api.meetup.com/2/open_events.json?category=21&radius=50&lon=-122.255334&lat=37.865905&topic=#{topic_ids.join(',')}&key=5336243622357f5d3153263216a444b")
+
+	genres = File.readlines('genres.txt')
+	@genres = genres.map{|x| x.chomp}
+
+
 	haml :root
 
 end

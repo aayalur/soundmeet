@@ -1,3 +1,4 @@
+= #encoding: utf-8
 -if !defined? @@token
 	:javascript
 		$(document).ready( function() {
@@ -10,6 +11,7 @@
 			}
 
 			function geoError(){ alert("Whoa, we can't find you...try again?"); }
+			$('#events li:nth-child(odd)').addClass('alternate');
 		});
 
 
@@ -28,13 +30,36 @@
 
 	-if defined? @meetup_response
 
-		/ %p= @meetup_response["results"].first["event_url"]
-		%ul
-			- @meetup_response["results"].each do |m|
-				%li
-					%a{:href => m["event_url"] } 
-						="#{m["name"]}"
-					%span= "- #{m["distance"].to_i.round(2)} miles away"
+		%div#events
+			%ul#events
+				- @meetup_response["results"].each do |m|
+					%li
+						%a{:href => m["event_url"] } 
+							="#{m["name"]}"
+						%span= "- #{m["distance"].to_i.round(2)} miles away"
+						-desc = m["description"].encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+						-query = desc.split(' ')
+						-matches = query & @genres
+						-if matches.any?
+							-matches = matches.take(3)
+							-matches.each do |tag|
+								%div.ticket
+									%span.circle
+									%a{:href => "#", :class => "active"}
+										="#{tag}"
+						-else
+							-desc = m["group"]["name"].encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+							-query = desc.split(' ')
+							-matches =  query & @genres
+							-if matches.any?
+								-matches = matches.take(3)
+								-matches.each do |tag|
+									%div.ticket
+										%span.circle
+										%a{:href => "#", :class => "active"}
+											="#{tag}"
+
+
 	-else
 
 		%p Oops! We couldn't find any compatible events near you...expand your horizons!

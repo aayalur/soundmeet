@@ -3,6 +3,7 @@
   %head
     %title= @title || SiteConfig.title
     %link{:href => '/main.css', :rel => 'stylesheet', :type => 'text/css'}
+    /%script{:type => "text/javascript", :src => "/jquery.js"}
     %script{:type => "text/javascript", :src => "http://code.jquery.com/jquery-1.10.2.min.js"}
     %script{:type => "text/javascript", :src => "/geolocation.js"}
   %body
@@ -11,6 +12,8 @@
         #logo
           %h1
             %a{:href => '/'}= SiteConfig.title
+      
       #content= yield
       #footer
+        %hr#footer
         %p#legal= "&mdash; &copy; #{Time.now.strftime('%Y')} #{SiteConfig.author} &mdash;"
