@@ -6,7 +6,7 @@ require 'oauth2'
 require 'uri'
 require 'json'
 require 'better_errors'
-require 'rMeetup'
+require 'rmeetup'
 require 'geocoder'
 require 'httparty'
 require File.join(File.dirname(__FILE__), 'environment')
