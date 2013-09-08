@@ -1,4 +1,20 @@
 -if !defined? @@token
+	:javascript
+		$(document).ready( function() {
+			if (geoPosition.init()) {
+				geoPosition.getCurrentPosition(geoSuccess, geoError);
+			}
+
+			function geoSuccess(p) { 
+				$.post('/coords',{lat:p.coords.latitude, long:p.coords.longitude});
+			}
+
+			function geoError(){ alert("Whoa, we can't find you...try again?"); }
+		});
+
+
+
+-if !defined? @@token
 	%div#desc
 		%p We connect with your Soundcloud account to find meetups near you with people who share your music tastes!
 	%div#tracks
@@ -6,12 +22,23 @@
 
 
 -if defined? @@token
-	%p= "Hello, #{@username}!"
+	%p= "Hey, #{@username.split[0]}!"
 	
-	%p We're working on finding meetups that fit your music tastes!
+	%p Based on your music tastes, we've found the following meetups that might interest you:
 
--if defined? @topic_ids
-	=@topic_ids
+	-if defined? @meetup_response
+
+		/ %p= @meetup_response["results"].first["event_url"]
+		%ul
+			- @meetup_response["results"].each do |m|
+				%li
+					%a{:href => m["event_url"] } 
+						=m["name"]
+	-else
+
+		%p Oops! We couldn't find any compatible events near you...expand your horizons!
+
+
 
 		
 

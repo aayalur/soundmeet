@@ -9,6 +9,13 @@ gem 'soundcloud'
 gem 'rMeetup'
 gem 'oauth2'
 gem 'better_errors'
+gem 'geocoder'
+gem 'httparty'
+gem 'bson'
+gem 'mongo'
+gem 'mongoid'
+gem 'bson_ext'
+gem 'awesome_print'
 
 
 group :test do

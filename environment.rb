@@ -12,6 +12,4 @@ configure do
                  :author => 'Amrit Ayalur',
                  :url_base => 'http://localhost:9393/'
                )
-
-
 end
