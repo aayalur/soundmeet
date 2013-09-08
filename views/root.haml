@@ -33,7 +33,8 @@
 			- @meetup_response["results"].each do |m|
 				%li
 					%a{:href => m["event_url"] } 
-						=m["name"]
+						="#{m["name"]}"
+					%span= "- #{m["distance"].to_i.round(2)} miles away"
 	-else
 
 		%p Oops! We couldn't find any compatible events near you...expand your horizons!

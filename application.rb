@@ -9,7 +9,6 @@ require 'better_errors'
 require 'rMeetup'
 require 'geocoder'
 require 'httparty'
-require 'awesome_print'
 require File.join(File.dirname(__FILE__), 'environment')
 
 class MeetupParty

@@ -15,7 +15,6 @@ gem 'bson'
 gem 'mongo'
 gem 'mongoid'
 gem 'bson_ext'
-gem 'awesome_print'
 
 
 group :test do
