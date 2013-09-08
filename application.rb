@@ -62,7 +62,7 @@ end
 get '/callback' do
 	client = Soundcloud.new(:client_id => '1e4be0491349b3dce6001760431265eb',
 													:client_secret => 'd5b42e696073e24b5a4e8fe6f2aa4af8',
-													:redirect_uri => "http://localhost:9393/callback")
+													:redirect_uri => "http://soundmeet.herokuapp.com/callback")
 
 # exchange authorization code for access token
 	code = params[:code]
@@ -116,7 +116,7 @@ end
 get '/soundcloud' do
 	client = Soundcloud.new(:client_id => '1e4be0491349b3dce6001760431265eb',
 													:client_secret => 'd5b42e696073e24b5a4e8fe6f2aa4af8',
-													:redirect_uri => "http://localhost:9393/callback")
+													:redirect_uri => "http://soundmeet.herokuapp.com/callback")
 	redirect client.authorize_url()
 end
 
