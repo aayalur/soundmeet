@@ -1,6 +1,7 @@
 = #encoding: utf-8
 -if !defined? @@token
 	:javascript
+
 		$(document).ready( function() {
 			if (geoPosition.init()) {
 				geoPosition.getCurrentPosition(geoSuccess, geoError);
@@ -11,14 +12,13 @@
 			}
 
 			function geoError(){ alert("Whoa, we can't find you...try again?"); }
-			$('#events li:nth-child(odd)').addClass('alternate');
 		});
 
 
 
 -if !defined? @@token
 	%div#desc
-		%p We connect with your Soundcloud account to find meetups near you with people who share your music tastes!
+		%p We connect with your SoundCloud account to find meetups near you catered to your music tastes!
 	%div#tracks
 		%a.tracks{:href => "/soundcloud"}	Make the magic happen!
 
@@ -29,6 +29,10 @@
 	%p Based on your music tastes, we've found the following meetups that might interest you:
 
 	-if defined? @meetup_response
+		:javascript
+			$(document).ready( function() {
+				$('#events li:nth-child(odd)').addClass('alternate');
+			});
 
 		%div#events
 			%ul#events

@@ -30,6 +30,15 @@ div#events {
   border: 1px #FF6600 solid;
   margin-top: 8%;
 }
+
+div#tracks {
+  text-align: center;
+  margin-top: 30px;
+}
+
+div#desc {
+  text-align: center;
+}
 #footer {
   padding: 0;
   margin: 0;
@@ -66,12 +75,14 @@ a:hover {
 li { 
   list-style: none;
   padding: 1%;
+  margin-bottom: 6px;
 }
 
 li.alternate {
   list-style: none;
   padding: 1%;
   background-color: #fbfbfb;
+  margin-bottom: 6px;
 }
 
 a.active { 
@@ -89,6 +100,7 @@ a.active {
     float: right;
     padding: 7px 3px;
     margin: 0 5px 5px 0;
+    margin-top: -5px;
 }
 
 .ticket:after {
@@ -171,3 +183,6 @@ a.active {
         0 1px 0 rgba(255,255,255,0.3);
 }
 
+a.tracks {
+  color: #e51937;
+}
